@@ -1,104 +1,68 @@
-import React, { useState } from "react";
-import { Lock, User, ArrowLeft } from "lucide-react"; 
-import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { ShieldCheck, Mail, Lock, ArrowRight } from "lucide-react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setIsLoading(true);
-
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        email,
-        password,
-      });
-      console.log("Resposta do servidor:", response.data);
-      navigate('/VisaoGeral');
-    } catch (err) {
-      console.error("Erro ao fazer login:", err);
-      setError("Não foi possível conectar ou credenciais inválidas.");
-    } finally {
-      setIsLoading(false);
-    }
+  // Função simplificada e direta para o frontend
+  const handleEntrar = (e: React.FormEvent) => {
+    e.preventDefault(); // Impede a página de recarregar
+    navigate('/visao-geral'); // Vai direto para o painel, sem esperar
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md">
-        {/* Botão para voltar à Home antes do card de login */}
-        <form
-          onSubmit={handleLogin}
-          className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
-        >
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
-            Bem-vindo
-          </h2>
-          <p className="text-center text-gray-500 mb-8">Introduza os seus dados para acessar</p>
-
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-xl text-sm border border-red-100">
-              {error}
-            </div>
-          )}
-
-          <div className="mb-5">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">E-mail</label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 text-gray-400" size={18} />
-              <input
-                type="email"
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 font-sans">
+      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+        
+        <div className="bg-slate-900 p-8 text-center">
+          <div className="inline-flex items-center justify-center p-3 bg-slate-800 rounded-2xl mb-4 shadow-inner">
+            <ShieldCheck size={40} className="text-blue-400" />
           </div>
+          <h1 className="text-2xl font-bold text-white tracking-tight">ProjetoG2 <span className="text-blue-400 italic font-medium">AI</span></h1>
+          <p className="text-slate-400 text-sm mt-2">Plataforma de Governança e Auditoria</p>
+        </div>
 
-          <div className="mb-8">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">Senha</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 text-gray-400" size={18} />
-              <input
-                type="password"
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+        <div className="p-8">
+          <form onSubmit={handleEntrar} className="space-y-6">
+            
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">E-mail Corporativo</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-3.5 text-gray-400" size={18} />
+                <input 
+                  type="text" 
+                  defaultValue="admin@projetog2.com.br"
+                  className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-800 font-medium"
+                />
+              </div>
             </div>
-          </div>
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`w-full text-white font-bold py-3 rounded-xl transition-all shadow-lg ${
-              isLoading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 shadow-blue-200"
-            }`}
-          >
-            {isLoading ? "A carregar..." : "Entrar no Sistema"}
-          </button>
-        </form>
-        <button 
-          onClick={() => navigate("/")}
-          className="flex items-center text-gray-600 hover:text-blue-600 mb-6 transition-colors group"
-          style={{ padding: "10px", marginTop: "20px" }}
-        >
-          <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-          Voltar
-        </button>
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-sm font-bold text-gray-700">Senha de Acesso</label>
+              </div>
+              <div className="relative">
+                <Lock className="absolute left-4 top-3.5 text-gray-400" size={18} />
+                <input 
+                  type="password" 
+                  defaultValue="123456"
+                  className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-800 font-medium"
+                />
+              </div>
+            </div>
+
+            <button 
+              type="submit"
+              className="w-full flex items-center justify-center space-x-2 bg-blue-600 text-white py-3.5 rounded-xl font-bold hover:bg-blue-700 transition-all active:scale-95 shadow-md"
+            >
+              <span>Entrar no Sistema</span>
+              <ArrowRight size={18} />
+            </button>
+
+          </form>
+        </div>
       </div>
     </div>
-    
   );
 };
 

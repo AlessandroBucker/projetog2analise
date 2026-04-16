@@ -1,37 +1,29 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './components/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Login from './components/Login';
-import Leads from './components/Leads';
+import Layout from './components/Layout';
 import VisaoGeral from './components/VisaoGeral';
-import Layout from './components/Layout';import Relatorios from './components/Relatorios';
-import NovaAnalise from './components/NovaAnalise';
-import Cadastros from './components/Cadastros';
 import Configuracoes from './components/Configuracoes';
+import Relatorios from './components/Relatorios';
 import Pendencias from './components/Pendencias';
+import NovaAnalise from './components/NovaAnalise';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        {/* Rotas Públicas (Sem o menu lateral) */}
-        <Route path="/" element={<Home />} />
-        <Route path="/leads" element={<Leads />} />
-        <Route path="/login" element={<Login />} />
-        
-        {/* Rotas Protegidas (Com o menu lateral) */}
+        <Route path="/" element={<Login />} />
+
+        {/* Todas essas rotas aqui DEVEM estar minúsculas */}
         <Route element={<Layout />}>
-          <Route path="/VisaoGeral" element={<VisaoGeral />} />
-          <Route path="/configuracoes" element={<Configuracoes />} />
-          <Route path="/cadastros" element={<Cadastros />} />
-          <Route path="/relatorios" element={<Relatorios />} />
+          <Route path="/visao-geral" element={<VisaoGeral />} />
           <Route path="/nova-analise" element={<NovaAnalise />} />
           <Route path="/pendencias" element={<Pendencias />} />
+          <Route path="/relatorios" element={<Relatorios />} />
+          <Route path="/configuracoes" element={<Configuracoes />} />
         </Route>
-        
-
-        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
