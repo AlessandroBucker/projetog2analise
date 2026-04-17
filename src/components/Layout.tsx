@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { 
-  LayoutDashboard, FileText, Users, Settings, 
+  LayoutDashboard, Users, Settings, 
   LogOut, Bell, ShieldCheck,
   BarChart3, PlusCircle, FileWarning 
 } from "lucide-react";
@@ -13,9 +13,9 @@ const Layout = () => {
 
   const getTituloPagina = () => {
     switch (location.pathname.toLowerCase()) {
-      case '/visao-geral': return 'Visão Geral';
+      case '/visaogeral': return 'Visão Geral';
       case '/cadastros': return 'Cadastrados';
-      case '/nova-analise': return 'Configurar Nova Análise';
+      case '/novaanalise': return 'Configurar Nova Análise';
       case '/pendencias': return 'Central de Pendências';
       case '/relatorios': return 'Relatórios';
       case '/configuracoes': return 'Configurações';
@@ -53,7 +53,7 @@ const Layout = () => {
               <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">Cadastros</span>
             </button>
             
-            <button onClick={() => navigate('/nova-analise')} className="flex items-center w-full p-3 rounded-lg hover:bg-slate-800 transition-all whitespace-nowrap">
+            <button onClick={() => navigate('/novaanalise')} className="flex items-center w-full p-3 rounded-lg hover:bg-slate-800 transition-all whitespace-nowrap">
               <PlusCircle size={24} className="min-w-[24px]" />
               <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">Nova Análise</span>
             </button>
@@ -74,11 +74,6 @@ const Layout = () => {
             <button onClick={() => navigate('/relatorios')} className="flex items-center w-full p-3 rounded-lg hover:bg-slate-800 transition-all whitespace-nowrap">
                 <BarChart3 size={24} className="min-w-[24px]" />
                 <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">Relatórios</span>
-            </button>
-              
-            <button className="flex items-center w-full p-3 rounded-lg hover:bg-slate-800 transition-all whitespace-nowrap">
-              <FileText size={24} className="min-w-[24px]" />
-              <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">Documentos</span>
             </button>
 
             <button onClick={() => navigate('/configuracoes')} className="flex items-center w-full p-3 rounded-lg hover:bg-slate-800 transition-all whitespace-nowrap">

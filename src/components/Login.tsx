@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ShieldCheck, Mail, Lock, ArrowRight } from "lucide-react";
+//import api from '../services/api'; // Importe nossa nova configuração
 
 const Login = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Login = () => {
   // Função simplificada e direta para o frontend
   const handleEntrar = (e: React.FormEvent) => {
     e.preventDefault(); // Impede a página de recarregar
-    navigate('/visao-geral'); // Vai direto para o painel, sem esperar
+    navigate('/visaogeral'); // Vai direto para o painel, sem esperar
   };
 
   return (

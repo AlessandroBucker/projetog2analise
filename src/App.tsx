@@ -19,11 +19,12 @@ function App() {
 
         {/* Todas essas rotas aqui DEVEM estar minúsculas */}
         <Route element={<Layout />}>
-          <Route path="/visao-geral" element={<VisaoGeral />} />
-          <Route path="/nova-analise" element={<NovaAnalise />} />
+          <Route path="/visaogeral" element={<VisaoGeral />} />
+          <Route path="/novaanalise" element={<NovaAnalise />} />
           <Route path="/pendencias" element={<Pendencias />} />
           <Route path="/relatorios" element={<Relatorios />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
+          
         </Route>
       </Routes>
     </Router>
