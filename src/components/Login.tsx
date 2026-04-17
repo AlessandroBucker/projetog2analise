@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ShieldCheck, Mail, Lock, ArrowRight } from "lucide-react";
+import { ShieldCheck, Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
 //import api from '../services/api'; // Importe nossa nova configuração
 
 const Login = () => {
@@ -12,8 +12,18 @@ const Login = () => {
   };
 
   return (
+
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 font-sans">
-      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+      {/* Voltar */}
+      <div className=" w-full max-w-xl" >
+            <button 
+              onClick={() => navigate("/")}
+              className="flex items-center text-slate-500 hover:text-blue-600 mb-8 transition-colors group">
+              <ArrowLeft size={20} className="ml-10 group-hover:-translate-x-1 transition-transform" />
+              Voltar para a Home
+            </button>
+        </div>
+      <div className="mr-10 max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
         
         <div className="bg-slate-900 p-8 text-center">
           <div className="inline-flex items-center justify-center p-3 bg-slate-800 rounded-2xl mb-4 shadow-inner">

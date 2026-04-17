@@ -8,6 +8,7 @@ import Configuracoes from './components/Configuracoes';
 import Relatorios from './components/Relatorios';
 import Pendencias from './components/Pendencias';
 import NovaAnalise from './components/NovaAnalise';
+import Leads from './components/Leads';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/leads" element={<Leads />} />
         
 
         {/* Todas essas rotas aqui DEVEM estar minúsculas */}
