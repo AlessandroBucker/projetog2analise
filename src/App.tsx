@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
-import { ThemeProvider } from './contexts/ThemeContext'; // Importe o Provider
+import { ThemeProvider } from './contexts/ThemeContext'; 
 
 import Home from './components/Home';
 import Login from './components/Login';
@@ -16,26 +16,27 @@ import Cadastros from './components/Cadastros';
 function App() {
   return (
     <ThemeProvider>
-    <BrowserRouter>
-      <Routes>
+      <BrowserRouter>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/leads" element={<Leads />} />
-        
-        <Route element={<ProtectedRoute />}>{/* Rotas Privadas: Envolvidas pelo ProtectedRoute */}
-          <Route element={<Layout />}>{/* Todas essas rotas aqui DEVEM estar minúsculas */}
+          
+          {/* Rotas Privadas */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
               <Route path="/visaogeral" element={<VisaoGeral />} />
               <Route path="/novaanalise" element={<NovaAnalise />} />
               <Route path="/pendencias" element={<Pendencias />} />
               <Route path="/relatorios" element={<Relatorios />} />
               <Route path="/configuracoes" element={<Configuracoes />} />
               <Route path="/cadastros" element={<Cadastros />} />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="*" element={<Home />} /> {/* Rota de fallback para qualquer caminho não definido */}
-      </Routes>
-    </BrowserRouter>
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

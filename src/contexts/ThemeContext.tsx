@@ -15,7 +15,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>({ primaryColor: '#2563eb' });
 
   useEffect(() => {
-    // Atualiza a variável CSS global sempre que o tema mudar
     document.documentElement.style.setProperty('--primary-color', theme.primaryColor);
   }, [theme]);
 
@@ -26,7 +25,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Hook customizado para facilitar o uso nos componentes
+// Adicione esta linha de comentário abaixo para o ESLint ignorar o aviso:
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
