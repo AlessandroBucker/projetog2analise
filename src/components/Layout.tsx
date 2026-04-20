@@ -10,14 +10,17 @@ import {
   BarChart3,
   PlusCircle,
   FileWarning,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext"; // <-- Importamos o hook do tema
+
 
 const Layout = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { setTheme } = useTheme(); // <-- Puxamos a função para trocar a cor
+  const { theme, setTheme, toggleDarkMode } = useTheme(); // <-- Puxamos a função para trocar a cor
 
   const handleLogout = () => {
     localStorage.removeItem("saas_token");
@@ -54,7 +57,6 @@ const Layout = () => {
   ];
 
   return (
-    // Usamos var(--bg-color) no container principal
     <div className="flex h-screen bg-[var(--bg-color)] overflow-hidden font-sans transition-colors duration-300">
       {/* Sidebar Fixa - Usando var(--sidebar-bg) */}
       <aside className="fixed top-0 left-0 h-screen group w-20 hover:w-64 bg-[var(--sidebar-bg)] text-white flex flex-col transition-all duration-300 z-50 shadow-xl">
@@ -165,22 +167,22 @@ const Layout = () => {
             {/* SELETOR DE TEMAS DINÂMICOS */}
             <div className="hidden sm:flex items-center space-x-2 mr-4 border-r border-gray-100 pr-6">
               <button
-                onClick={() => setTheme({ primaryColor: "#2563eb" })}
+                onClick={() => setTheme({...theme, primaryColor: "#2563eb" })}
                 className="w-5 h-5 rounded-full bg-blue-600 shadow-sm hover:scale-110 transition-transform"
                 title="Azul"
               ></button>
               <button
-                onClick={() => setTheme({ primaryColor: "#16a34a" })}
+                onClick={() => setTheme({...theme, primaryColor: "#16a34a" })}
                 className="w-5 h-5 rounded-full bg-green-600 shadow-sm hover:scale-110 transition-transform"
                 title="Verde"
               ></button>
               <button
-                onClick={() => setTheme({ primaryColor: "#9333ea" })}
+                onClick={() => setTheme({...theme, primaryColor: "#9333ea" })}
                 className="w-5 h-5 rounded-full bg-purple-600 shadow-sm hover:scale-110 transition-transform"
                 title="Roxo"
               ></button>
               <button
-                onClick={() => setTheme({ primaryColor: "#ea580c" })}
+                onClick={() => setTheme({...theme, primaryColor: "#ea580c" })}
                 className="w-5 h-5 rounded-full bg-orange-600 shadow-sm hover:scale-110 transition-transform"
                 title="Laranja"
               ></button>
@@ -188,6 +190,21 @@ const Layout = () => {
 
             {/* Sino de Notificações */}
             <div className="relative">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 mr-4 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+                title={
+                  theme.isDarkMode
+                    ? "Mudar para Modo Claro"
+                    : "Mudar para Modo Escuro"
+                }
+              >
+                {theme.isDarkMode ? (
+                  <Sun size={22} className="text-yellow-400" />
+                ) : (
+                  <Moon size={22} />
+                )}
+              </button>
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className={`p-2 rounded-full relative transition-colors ${showNotifications ? "bg-blue-50 text-[var(--primary-color)]" : "text-gray-500 hover:bg-gray-100"}`}

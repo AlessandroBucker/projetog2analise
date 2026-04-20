@@ -1,15 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Esta linha diz ao Tailwind v4 para ativar o dark mode quando a classe .dark estiver no HTML */
+@variant dark (&:is(.dark *));
 
 @layer base {
   :root {
-    /* Cores dinâmicas que o React vai controlar */
-    --primary-color: #2563eb; /* Azul padrão */
+    --primary-color: #2563eb; 
     
-    /* Cores estáticas estruturais */
-    --bg-color: #f8fafc;
-    --text-color: #1e293b;
-    --sidebar-bg: #0f172a;
+    /* Cores Globais do Modo Claro */
+    --bg-color: #f8fafc;        /* slate-50 */
+    --text-color: #1e293b;      /* slate-800 */
+    --sidebar-bg: #0f172a;      /* slate-900 */
+  }
+
+  .dark {
+    /* Cores Globais do Modo Escuro */
+    --bg-color: #020617;        /* slate-950 */
+    --text-color: #f8fafc;      /* slate-50 */
+    --sidebar-bg: #000000;      /* Preto total */
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
   }
 }

@@ -22,10 +22,12 @@ const Leads = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-xl">
+        
         {/* Voltar */}
         <button 
           onClick={() => navigate("/")}
-          className="flex items-center text-slate-500 hover:text-blue-600 mb-8 transition-colors group"
+          // Hover do botão de voltar com cor dinâmica
+          className="flex items-center text-slate-500 hover:text-[var(--primary-color)] mb-8 transition-colors group"
         >
           <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
           Voltar para a Home
@@ -33,7 +35,8 @@ const Leads = () => {
 
         <div className="bg-white rounded-3xl shadow-xl p-10 border border-slate-100">
           <div className="flex items-center space-x-3 mb-8">
-            <div className="bg-blue-600 p-2 rounded-lg text-white">
+            {/* Ícone principal com cor de fundo dinâmica */}
+            <div className="bg-[var(--primary-color)] transition-colors duration-300 p-2 rounded-lg text-white">
               <ShieldCheck size={24} />
             </div>
             <h2 className="text-2xl font-bold text-slate-800">Tenha o ProjetoG2 no seu escritório</h2>
@@ -45,7 +48,8 @@ const Leads = () => {
               <input 
                 type="text" 
                 required
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                // Borda de Focus dinâmica (quando o usuário clica no input)
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none transition-all"
                 placeholder="Ex: João Silva"
                 onChange={(e) => setFormData({...formData, nome: e.target.value})}
               />
@@ -57,7 +61,7 @@ const Leads = () => {
                 <input 
                   type="email" 
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none transition-all"
                   placeholder="joao@empresa.com"
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
@@ -67,7 +71,7 @@ const Leads = () => {
                 <input 
                   type="tel" 
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none transition-all"
                   placeholder="(11) 99999-9999"
                   onChange={(e) => setFormData({...formData, telefone: e.target.value})}
                 />
@@ -77,7 +81,7 @@ const Leads = () => {
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">Serviço de Interesse</label>
               <select 
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none transition-all bg-white"
                 onChange={(e) => setFormData({...formData, servico: e.target.value})}
               >
                 <option value="governança">Governança de Documentos</option>
@@ -89,7 +93,8 @@ const Leads = () => {
 
             <button 
               type="submit"
-              className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center hover:bg-blue-700 shadow-lg shadow-blue-100 transition-all mt-4"
+              // Botão de envio usando a cor primária e efeito brightness no hover
+              className="w-full bg-[var(--primary-color)] text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center hover:brightness-90 shadow-lg shadow-slate-200 transition-all duration-300 mt-4 active:scale-95"
             >
               Enviar Solicitação <Send className="ml-2" size={18} />
             </button>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ClipboardCheck, Database, FileSearch, Save } from "lucide-react";
 
-
 const NovaAnalise = () => {
   const [formData, setFormData] = useState({
     nome: "",
@@ -24,13 +23,15 @@ const NovaAnalise = () => {
           {/* Campo: Nome da Análise */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
-              <ClipboardCheck size={18} className="mr-2 text-blue-500" />
+              {/* Ícone Dinâmico */}
+              <ClipboardCheck size={18} className="mr-2 text-[var(--primary-color)] transition-colors" />
               Nome da Análise
             </label>
             <input
               type="text"
               placeholder="Ex: Auditoria Trimestral - Empresa X"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+              // Focus dinâmico
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none transition-all"
               value={formData.nome}
               onChange={(e) => setFormData({...formData, nome: e.target.value})}
               required
@@ -41,11 +42,13 @@ const NovaAnalise = () => {
             {/* Campo: Seleção do Cadastro (Empresa/Cliente) */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
-                <Database size={18} className="mr-2 text-blue-500" />
+                {/* Ícone Dinâmico */}
+                <Database size={18} className="mr-2 text-[var(--primary-color)] transition-colors" />
                 Seleção do Cadastro
               </label>
               <select 
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none bg-white"
+                // Focus dinâmico
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none bg-white transition-all"
                 value={formData.cadastro}
                 onChange={(e) => setFormData({...formData, cadastro: e.target.value})}
                 required
@@ -60,11 +63,13 @@ const NovaAnalise = () => {
             {/* Campo: Tipo de Análise */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
-                <FileSearch size={18} className="mr-2 text-blue-500" />
+                {/* Ícone Dinâmico */}
+                <FileSearch size={18} className="mr-2 text-[var(--primary-color)] transition-colors" />
                 Tipo de Análise
               </label>
               <select 
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none bg-white"
+                // Focus dinâmico
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] outline-none bg-white transition-all"
                 value={formData.tipo}
                 onChange={(e) => setFormData({...formData, tipo: e.target.value})}
                 required
@@ -100,7 +105,8 @@ const NovaAnalise = () => {
                 checked={formData.reutilizar}
                 onChange={(e) => setFormData({...formData, reutilizar: e.target.checked})}
               />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              {/* Fundo do Switch (Toggle) reativo ao Tema */}
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--primary-color)] transition-colors duration-300"></div>
             </label>
           </div>
         </div>
@@ -109,7 +115,8 @@ const NovaAnalise = () => {
         <div className="flex justify-center">
           <button 
             type="submit"
-            className="flex items-center justify-center space-x-2 bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-slate-800 hover:shadow-lg transition-all transform active:scale-95"
+            // Botão principal usando a cor dinâmica e efeito hover com brightness
+            className="flex items-center justify-center space-x-2 bg-[var(--primary-color)] text-white px-10 py-4 rounded-2xl font-bold hover:brightness-90 hover:shadow-lg transition-all duration-300 transform active:scale-95"
           >
             <Save size={20} />
             <span>Iniciar Processamento</span>
