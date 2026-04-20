@@ -9,7 +9,9 @@ const VisaoGeral = () => {
 
   // Dados fictícios para os cards de resumo
   const metricas = [
-    { titulo: "Clientes Ativos", valor: "24", icone: <Users size={24} />, cor: "text-blue-600", bg: "bg-blue-50" },
+    // Substituímos o azul pela cor dinâmica. O fundo ficou um cinza neutro (slate-100)
+    // para combinar perfeitamente com qualquer cor de tema escolhida!
+    { titulo: "Clientes Ativos", valor: "24", icone: <Users size={24} />, cor: "text-[var(--primary-color)]", bg: "bg-slate-100" },
     { titulo: "Docs. Processados", valor: "1.284", icone: <FileCheck size={24} />, cor: "text-green-600", bg: "bg-green-50" },
     { titulo: "Pendências", valor: "3", icone: <AlertCircle size={24} />, cor: "text-red-600", bg: "bg-red-50" },
     { titulo: "Precisão da IA", valor: "98.5%", icone: <Activity size={24} />, cor: "text-purple-600", bg: "bg-purple-50" },
@@ -24,12 +26,13 @@ const VisaoGeral = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 pb-12">
+      
       {/* Grid de Métricas Principais */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {metricas.map((metrica, index) => (
           <div key={index} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-start mb-4">
-              <div className={`p-3 rounded-2xl ${metrica.bg} ${metrica.cor}`}>
+              <div className={`p-3 rounded-2xl ${metrica.bg} ${metrica.cor} transition-colors duration-300`}>
                 {metrica.icone}
               </div>
             </div>
@@ -48,12 +51,14 @@ const VisaoGeral = () => {
         <div className="lg:col-span-2 bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-bold text-gray-800 flex items-center">
-              <Clock size={20} className="mr-2 text-blue-600" />
+              {/* Ícone com cor dinâmica */}
+              <Clock size={20} className="mr-2 text-[var(--primary-color)] transition-colors duration-300" />
               Atividades Recentes
             </h3>
             <button 
               onClick={() => navigate('/relatorios')}
-              className="text-sm text-blue-600 font-bold hover:underline"
+              // Botão com cor dinâmica
+              className="text-sm text-[var(--primary-color)] font-bold hover:brightness-75 transition-all"
             >
               Ver todos
             </button>
@@ -82,31 +87,33 @@ const VisaoGeral = () => {
           <h3 className="text-lg font-bold text-gray-800 mb-6 border-b pb-3">Atalhos</h3>
           
           <div className="space-y-3">
+            {/* Botão Adicionar Cliente -> Substituído para Cor Dinâmica */}
             <button 
               onClick={() => navigate('/cadastros')}
-              className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-blue-50 hover:border-blue-100 border border-transparent rounded-2xl transition-all group"
+              className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 hover:border-[var(--primary-color)] border border-transparent rounded-2xl transition-all group"
             >
               <div className="flex items-center space-x-3">
-                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-blue-600 shadow-sm">
+                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-[var(--primary-color)] shadow-sm transition-colors">
                   <Users size={18} />
                 </div>
-                <span className="text-sm font-bold text-gray-700 group-hover:text-blue-700">Adicionar Cliente</span>
+                <span className="text-sm font-bold text-gray-700 group-hover:text-[var(--primary-color)] transition-colors">Adicionar Cliente</span>
               </div>
-              <ArrowRight size={16} className="text-gray-400 group-hover:text-blue-600 transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={16} className="text-gray-400 group-hover:text-[var(--primary-color)] transition-all group-hover:translate-x-1" />
             </button>
 
+            {/* Os botões abaixo mantivemos as cores (Vermelho e Verde) pois representam "Aviso/Erro" e "Sucesso/Download" na semântica da UI */}
             <button 
               onClick={() => navigate('/pendencias')}
               className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-red-50 hover:border-red-100 border border-transparent rounded-2xl transition-all group"
             >
               <div className="flex items-center space-x-3">
-                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-red-600 shadow-sm relative">
+                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-red-600 shadow-sm relative transition-colors">
                   <AlertCircle size={18} />
                   <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                 </div>
-                <span className="text-sm font-bold text-gray-700 group-hover:text-red-700">Resolver Pendências</span>
+                <span className="text-sm font-bold text-gray-700 group-hover:text-red-700 transition-colors">Resolver Pendências</span>
               </div>
-              <ArrowRight size={16} className="text-gray-400 group-hover:text-red-600 transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={16} className="text-gray-400 group-hover:text-red-600 transition-all group-hover:translate-x-1" />
             </button>
 
             <button 
@@ -114,12 +121,12 @@ const VisaoGeral = () => {
               className="w-full flex items-center justify-between p-4 bg-slate-50 hover:bg-green-50 hover:border-green-100 border border-transparent rounded-2xl transition-all group"
             >
               <div className="flex items-center space-x-3">
-                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-green-600 shadow-sm">
+                <div className="bg-white p-2 rounded-xl text-gray-500 group-hover:text-green-600 shadow-sm transition-colors">
                   <FileText size={18} />
                 </div>
-                <span className="text-sm font-bold text-gray-700 group-hover:text-green-700">Baixar Relatórios</span>
+                <span className="text-sm font-bold text-gray-700 group-hover:text-green-700 transition-colors">Baixar Relatórios</span>
               </div>
-              <ArrowRight size={16} className="text-gray-400 group-hover:text-green-600 transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={16} className="text-gray-400 group-hover:text-green-600 transition-all group-hover:translate-x-1" />
             </button>
           </div>
         </div>

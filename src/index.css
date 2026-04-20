@@ -1,1 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cores dinâmicas que o React vai controlar */
+    --primary-color: #2563eb; /* Azul padrão */
+    
+    /* Cores estáticas estruturais */
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --sidebar-bg: #0f172a;
+  }
+}

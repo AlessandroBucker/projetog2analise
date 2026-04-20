@@ -5,11 +5,15 @@ import { ShieldCheck, Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
 const Login = () => {
   const navigate = useNavigate();
 
-  // Função simplificada e direta para o frontend
   const handleEntrar = (e: React.FormEvent) => {
-    e.preventDefault(); // Impede a página de recarregar
-    navigate('/visaogeral'); // Vai direto para o painel, sem esperar
-  };
+      e.preventDefault(); // Impede a página de recarregar
+      
+      // 1. Simulamos que o login foi um sucesso e salvamos o token no navegador
+      localStorage.setItem('saas_token', 'token-valido-123');
+      
+      // 2. Redireciona para o painel
+      navigate('/visaogeral'); 
+    };
 
   return (
 
