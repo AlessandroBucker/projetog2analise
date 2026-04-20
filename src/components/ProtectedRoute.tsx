@@ -1,17 +1,27 @@
-import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute: React.FC = () => {
-  // Aqui verificamos se existe um token (ou alguma flag) no localStorage
-  // Em uma aplicação real, você pode usar um Contexto de Autenticação
-  const isAuthenticated = !!localStorage.getItem('saas_token');
+// Definimos que a rota pode receber uma lista de perfis permitidos
+type ProtectedRouteProps = {
+  allowedRoles?: string[];
+};
 
-  // Se o usuário não estiver logado, redireciona para a tela de Login
-  if (!isAuthenticated) {
+const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
+  const token = localStorage.getItem('saas_token');
+  const userRole = localStorage.getItem('saas_role'); // Ex: 'ADMIN', 'ANALISTA', 'PF', 'PJ'
+
+  // 1. Se não tem token de login, manda pra fora (Home ou Login)
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
-  // Se estiver logado, permite que as rotas filhas (como o Layout) sejam renderizadas
+  // 2. Se a rota exige perfis específicos E o perfil do usuário não está na lista
+  if (allowedRoles && userRole && !allowedRoles.includes(userRole)) {
+    // Redireciona para uma tela segura (ex: Visão Geral) e bloqueia o acesso
+    alert("Você não tem permissão para acessar esta tela.");
+    return <Navigate to="/visaogeral" replace />;
+  }
+
+  // 3. Tudo certo! Permite renderizar a tela solicitada
   return <Outlet />;
 };
 
