@@ -94,6 +94,18 @@ const Home = () => {
           <button onClick={() => navigate("/leads")} className="mt-12 bg-slate-900 text-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">
             Começar Agora
           </button>
+          {/* FOOTER SIMPLES */}
+
+        </div>
+
+      </section>
+      <section className="h-screen w-full snap-start flex flex-col items-center justify-center px-8 bg-white">
+        <div className="max-w-4xl flex flex-col items-center text-center">
+            <footer className="w-full border-t border-slate-100 py-10 text-center">
+        <p className="text-sm text-slate-400">
+          © 2024 ProjetoG2 — Governança e Tecnologia. Todos os direitos reservados.
+        </p>
+      </footer>
         </div>
       </section>
 
