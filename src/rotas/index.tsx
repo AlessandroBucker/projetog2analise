@@ -18,7 +18,10 @@ const Pendencias = lazy(() => import('../components/Pendencias'));
 const Relatorios = lazy(() => import('../components/Relatorios'));
 const Cadastros = lazy(() => import('../components/Cadastros'));
 const Configuracoes = lazy(() => import('../components/Configuracoes'));
+const NovoCliente = lazy(() => import('../components/NovoCliente'));
+const RevisaoDados = lazy(() => import('../components/RevisaoDados'));
 
+    
 // ---------------------------------------------------------
 // 2. COMPONENTE DE CARREGAMENTO (FALLBACK)
 // ---------------------------------------------------------
@@ -56,6 +59,11 @@ export const router = createBrowserRouter([
           { path: '/visaogeral', element: withSuspense(VisaoGeral) },
           { path: '/relatorios', element: withSuspense(Relatorios) },
           { path: '/pendencias', element: withSuspense(Pendencias) },
+          { path: '/novaanalise', element: withSuspense(NovaAnalise) },
+          { path: '/novocliente', element: withSuspense(NovoCliente) },
+          { path: '/revisaodados', element: withSuspense(RevisaoDados) },
+          
+
 
           // Rotas EXCLUSIVAS para ADMIN e ANALISTA
           {

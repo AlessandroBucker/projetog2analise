@@ -76,7 +76,10 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
 
       {/* Botão de Cadastro alinhado à direita */}
       <div className="mt-6 flex justify-end">
-        <button className="flex items-center space-x-2 bg-white border border-blue-600 text-blue-600 px-6 py-2 rounded-xl font-bold text-sm hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+        <button 
+          onClick={() => navigate("/novocliente")}
+          className="flex items-center space-x-2 bg-white border border-blue-600 text-blue-600 px-6 py-2 rounded-xl font-bold text-sm hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+        >
           <PlusCircle size={18} />
           <span>Cadastrar Novo Cliente</span>
         </button>
