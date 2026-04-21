@@ -1,3 +1,10 @@
+git add .
+git commit -m "Atualizando rotas e login"
+git push
+
+
+
+
 # Projeto G2 - Plataforma de Governança e Auditoria AI
 
 O **Projeto G2** é uma solução SaaS B2B focada em governança digital para escritórios de contabilidade. A plataforma utiliza inteligência artificial e OCR para automação de leitura de documentos, geração de relatórios de auditoria e gestão de pendências fiscais/contábeis.

@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
-  ShieldCheck, User, Building2, Globe, Edit3, 
-  Upload, Info, CheckCircle2, HelpCircle, ArrowLeft,
-  FileText, MessageSquare, AlertCircle
+  Edit3, Upload, CheckCircle2, HelpCircle, 
+  FileText, MessageSquare, AlertCircle, ArrowRight, Clock 
 } from "lucide-react";
 
 // --- CONFIGURAÇÃO DE DOCUMENTOS EXIGIDOS ---
@@ -27,11 +26,10 @@ type ProfileType = "PF" | "PJ" | "FOREIGNER";
 
 const CadastroRevisaoDados = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<ProfileType>("PJ");
+  const [activeTab] = useState<ProfileType>("PJ"); // Definido fixo para exemplo, ou use tabs para trocar
   const [isEditing, setIsEditing] = useState(false);
   const [uploads, setUploads] = useState<Record<string, string>>({});
   
-  // Dados simulados (vêm do formulário anterior)
   const [formData, setFormData] = useState({
     razaoSocial: "G2 Governança LTDA",
     cnpj: "00.000.000/0001-00",
@@ -40,18 +38,14 @@ const CadastroRevisaoDados = () => {
     email: "contato@g2governanca.com"
   });
 
-  // Verifica se todos os documentos da aba ativa foram carregados
   const isComplete = REQUIREMENTS[activeTab].every(doc => uploads[doc.id]);
 
   const handleUpload = (id: string) => {
-    // Simulação de upload de arquivo
-    setUploads(prev => ({ ...prev, [id]: `arquivo_selecionado_${id}.pdf` }));
+    setUploads(prev => ({ ...prev, [id]: `arquivo_${id}.pdf` }));
   };
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      
-
       <main className="max-w-7xl mx-auto px-6 py-10">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8">
           
@@ -62,7 +56,7 @@ const CadastroRevisaoDados = () => {
                 <h2 className="text-xl font-bold">Dados Cadastrais</h2>
                 <button 
                   onClick={() => setIsEditing(!isEditing)}
-                  className={`flex items-center gap-2 text-sm font-bold transition-colors ${isEditing ? 'text-green-600' : 'text-(--primary-color)'}`}
+                  className={`flex items-center gap-2 text-sm font-bold transition-colors ${isEditing ? 'text-green-600' : 'text-blue-600 hover:text-blue-700'}`}
                 >
                   <Edit3 size={16} />
                   {isEditing ? "Salvar Alterações" : "Editar Dados"}
@@ -71,16 +65,16 @@ const CadastroRevisaoDados = () => {
 
               <div className="space-y-4">
                 <ReviewField label="Razão Social" value={formData.razaoSocial} isEditing={isEditing} 
-                  onChange={(v) => setFormData({...formData, razaoSocial: v})} />
+                  onChange={(v: string) => setFormData({...formData, razaoSocial: v})} />
                 <ReviewField label="CNPJ" value={formData.cnpj} isEditing={isEditing} 
-                  onChange={(v) => setFormData({...formData, cnpj: v})} />
+                  onChange={(v: string) => setFormData({...formData, cnpj: v})} />
                 <ReviewField label="Inscrição Estadual" value={formData.inscricaoEstadual} isEditing={isEditing} 
-                  onChange={(v) => setFormData({...formData, inscricaoEstadual: v})} />
+                  onChange={(v: string) => setFormData({...formData, inscricaoEstadual: v})} />
                 <ReviewField label="Telefone Comercial" value={formData.telefone} isEditing={isEditing} 
-                  onChange={(v) => setFormData({...formData, telefone: v})} />
+                  onChange={(v: string) => setFormData({...formData, telefone: v})} />
               </div>
 
-              {/* HISTÓRICO DO ADMINISTRADOR (Exemplo de feedback de recusa) */}
+              {/* HISTÓRICO */}
               <div className="mt-8 pt-6 border-t border-slate-100">
                 <div className="flex items-center gap-2 text-red-500 mb-3">
                   <MessageSquare size={16} />
@@ -88,7 +82,7 @@ const CadastroRevisaoDados = () => {
                 </div>
                 <div className="bg-red-50 p-4 rounded-2xl border border-red-100">
                   <p className="text-xs text-red-700 leading-relaxed">
-                    <b>Admin (12/04):</b> "A Inscrição Estadual informada não consta no cadastro do Sintegra. Favor revisar os números ou enviar o comprovante de isenção."
+                    <span className="font-bold">Admin (12/04):</span> "A Inscrição Estadual informada não consta no cadastro do Sintegra. Favor revisar."
                   </p>
                 </div>
               </div>
@@ -103,7 +97,7 @@ const CadastroRevisaoDados = () => {
                 <h2 className="text-xl font-bold">Central de Documentos</h2>
               </div>
 
-              <div className="overflow-hidden rounded-2xl border border-slate-100">
+              <div className="overflow-x-auto rounded-2xl border border-slate-100">
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -136,7 +130,7 @@ const CadastroRevisaoDados = () => {
                             </div>
                           ) : (
                             <div className="flex items-center gap-2 text-slate-300 font-bold text-[10px] uppercase">
-                              <ClockIcon size={14} /> Pendente
+                              <Clock size={14} /> Pendente
                             </div>
                           )}
                         </td>
@@ -154,7 +148,7 @@ const CadastroRevisaoDados = () => {
                 </table>
               </div>
 
-              {/* BOTÃO FINAL DE SUBMISSÃO */}
+              {/* BOTÃO FINAL */}
               <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col items-center">
                 {!isComplete && (
                   <div className="flex items-center gap-2 text-orange-500 mb-4 animate-pulse">
@@ -166,9 +160,9 @@ const CadastroRevisaoDados = () => {
                 <button 
                   disabled={!isComplete}
                   onClick={() => navigate("/pendencias")}
-                  className={`w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${isComplete ? 'bg-(--primary-color) text-white shadow-xl shadow-blue-200 hover:brightness-110 active:scale-95' : 'bg-slate-100 text-slate-300 cursor-not-allowed'}`}
+                  className={`w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${isComplete ? 'bg-blue-600 text-white shadow-xl shadow-blue-200 hover:bg-blue-700 active:scale-95' : 'bg-slate-100 text-slate-300 cursor-not-allowed'}`}
                 >
-                  Enviar para Validação do Administrador
+                  Enviar para Validação
                   <ArrowRight size={20} />
                 </button>
               </div>
@@ -180,16 +174,7 @@ const CadastroRevisaoDados = () => {
   );
 };
 
-// --- SUB-COMPONENTES AUXILIARES ---
-
-const TabButton = ({ active, onClick, icon, label }: any) => (
-  <button 
-    onClick={onClick}
-    className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${active ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-  >
-    {icon} {label}
-  </button>
-);
+// --- SUB-COMPONENTES ---
 
 const ReviewField = ({ label, value, isEditing, onChange }: any) => (
   <div className="flex flex-col">
@@ -199,17 +184,9 @@ const ReviewField = ({ label, value, isEditing, onChange }: any) => (
       value={value}
       readOnly={!isEditing}
       onChange={(e) => onChange(e.target.value)}
-      className={`w-full px-4 py-3 rounded-xl border transition-all text-sm font-medium ${isEditing ? 'border-(--primary-color) bg-white shadow-sm' : 'border-slate-100 bg-slate-50 text-slate-500 cursor-default'}`}
+      className={`w-full px-4 py-3 rounded-xl border transition-all text-sm font-medium ${isEditing ? 'border-blue-500 bg-white shadow-sm outline-none' : 'border-slate-100 bg-slate-50 text-slate-500 cursor-default'}`}
     />
   </div>
-);
-
-const ClockIcon = ({ size, ...props }: any) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-);
-
-const ArrowRight = ({ size, ...props }: any) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 );
 
 export default CadastroRevisaoDados;

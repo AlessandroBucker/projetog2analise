@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   User, Building2, Globe, ArrowRight, ArrowLeft, 
-  Search, ShieldCheck, Database, CheckCircle2 
+  Search, ShieldCheck, Database,
 } from "lucide-react";
 
 type ClientType = "PF" | "PJ" | "FOREIGNER" | null;
@@ -17,7 +17,7 @@ const CadastroNovo = () => {
     razao: "", cnae: "", cnpj: "", email: ""
   });
 
-  
+
   const simulateCNPJLookup = () => {
     setLoadingAPI(true);
     setTimeout(() => {
