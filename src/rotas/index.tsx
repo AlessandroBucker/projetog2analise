@@ -13,13 +13,15 @@ const Home = lazy(() => import('../components/Home'));
 const Login = lazy(() => import('../components/Login'));
 const Leads = lazy(() => import('../components/Leads'));
 const VisaoGeral = lazy(() => import('../components/VisaoGeral'));
-const NovaAnalise = lazy(() => import('../components/NovaAnalise'));
+const AnaliseNova = lazy(() => import('../components/AnaliseNova'));
+const Analises = lazy(() => import('../components/Analises'));
 const Pendencias = lazy(() => import('../components/Pendencias'));
 const Relatorios = lazy(() => import('../components/Relatorios'));
 const Cadastros = lazy(() => import('../components/Cadastros'));
 const Configuracoes = lazy(() => import('../components/Configuracoes'));
-const NovoCliente = lazy(() => import('../components/NovoCliente'));
-const RevisaoDados = lazy(() => import('../components/RevisaoDados'));
+const CadastroNovo = lazy(() => import('../components/CadastroNovo'));
+const CadastroRevisaoDados = lazy(() => import('../components/CadastroRevisaoDados'));
+const DocumentosUpload = lazy(() => import('../components/DocumentosUpload'));
 
     
 // ---------------------------------------------------------
@@ -56,21 +58,23 @@ export const router = createBrowserRouter([
         element: <Layout />, 
         children: [
           // Rota que TODOS os logados acedem
-          { path: '/visaogeral', element: withSuspense(VisaoGeral) },
-          { path: '/relatorios', element: withSuspense(Relatorios) },
-          { path: '/pendencias', element: withSuspense(Pendencias) },
-          { path: '/novaanalise', element: withSuspense(NovaAnalise) },
-          { path: '/novocliente', element: withSuspense(NovoCliente) },
-          { path: '/revisaodados', element: withSuspense(RevisaoDados) },
-          
+            { path: '/visaogeral', element: withSuspense(VisaoGeral) },
+            { path: '/relatorios', element: withSuspense(Relatorios) },
+            { path: '/pendencias', element: withSuspense(Pendencias) },
+            { path: '/analiseNova', element: withSuspense(AnaliseNova) },
+            { path: '/cadastroNovo', element: withSuspense(CadastroNovo) },
+            { path: '/CadastroRevisaoDados', element: withSuspense(CadastroRevisaoDados) },
+            { path: '/cadastros', element: withSuspense(Cadastros) },
+            { path: '/analises', element: withSuspense(Analises) },
+            { path: '/DocumentosUpload', element: withSuspense(DocumentosUpload) },
+
 
 
           // Rotas EXCLUSIVAS para ADMIN e ANALISTA
           {
             element: <ProtectedRoute allowedRoles={['ADMIN', 'ANALISTA']} />,
             children: [
-              { path: '/cadastros', element: withSuspense(Cadastros) },
-              { path: '/novaanalise', element: withSuspense(NovaAnalise) },
+
             ]
           },
 

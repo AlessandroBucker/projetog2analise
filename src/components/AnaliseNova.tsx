@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ClipboardCheck, Database, FileSearch, Save } from "lucide-react";
 
-const NovaAnalise = () => {
+const AnaliseNova = () => {
   const [formData, setFormData] = useState({
     nome: "",
     cadastro: "",
@@ -127,4 +127,4 @@ const NovaAnalise = () => {
   );
 };
 
-export default NovaAnalise;
+export default AnaliseNova;

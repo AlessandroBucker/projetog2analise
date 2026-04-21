@@ -12,6 +12,8 @@ import {
   FileWarning,
   Sun,
   Moon,
+  FileUp,      // Ícone para Upload
+  CheckSquare,  // Ícone para Revisão
 } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -26,20 +28,22 @@ const Layout = () => {
     navigate("/login");
   };
 
+  // Sincronizado com os caminhos do menu para o título atualizar corretamente
   const getTituloPagina = () => {
-    switch (location.pathname.toLowerCase()) {
+    const path = location.pathname.toLowerCase();
+    switch (path) {
       case "/visaogeral":
         return "Visão Geral";
       case "/cadastros":
         return "Cadastros";
-      case "/novaanalise":
-        return "Configurar Nova Análise";
-      case "/pendencias":
-        return "Central de Pendências";
+      case "/analisenova":
+        return "Nova Análise";
+      case "/documentosupload": 
+        return "Central de Documentos";
+      case "/CadastroRevisaoDados":    
+        return "Revisão de Dados";
       case "/relatorios":
         return "Relatórios";
-      case "/configuracoes":
-        return "Configurações";
       default:
         return "Visão Geral";
     }
@@ -48,14 +52,9 @@ const Layout = () => {
   const notifications = [
     { id: 1, text: "Novo lead capturado: João Silva", time: "5 min atrás" },
     { id: 2, text: "OCR concluído: Nota Fiscal #442", time: "1 hora atrás" },
-    {
-      id: 3,
-      text: "Alerta: Documento pendente há 2 dias",
-      time: "3 horas atrás",
-    },
+    { id: 3, text: "Alerta: Documento pendente há 2 dias", time: "3 horas atrás" },
   ];
 
-  // FUNÇÃO MÁGICA: Ajustei o padding (px-3 py-3) e o arredondamento (rounded-xl)
   const getNavClass = (path: string, extraClasses: string = "") => {
     const isActive = location.pathname.toLowerCase() === path.toLowerCase();
     return `flex items-center w-full px-3 py-3 rounded-xl transition-all duration-300 whitespace-nowrap overflow-hidden ${extraClasses} ${
@@ -68,102 +67,79 @@ const Layout = () => {
   return (
     <div className="flex h-screen bg-(--bg-color) overflow-hidden font-sans transition-colors duration-300">
       
-      {/* Sidebar Fixa - Ajustada para w-16 (64px) para centralização perfeita */}
+      {/* Sidebar Fixa */}
       <aside className="fixed top-0 left-0 h-screen group w-16 hover:w-64 bg-(--sidebar-bg) text-white flex flex-col transition-all duration-300 z-50 shadow-2xl">
         
-        {/* LOGO - Alinhada perfeitamente com o cabeçalho superior */}
-    <div className="px-4 h-12 flex items-center border-b border-white/10 overflow-hidden whitespace-nowrap">
+        {/* LOGO */}
+        <div className="px-4 h-12 flex items-center border-b border-white/10 overflow-hidden whitespace-nowrap">
           <ShieldCheck
             className="text-(--primary-color) min-w-[32px] flex-shrink-0 transition-colors"
             size={32}
           />
           <span className="ml-4 text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-            ProjetoG2{" "}
-            <span className="text-(--primary-color) text-sm italic transition-colors">
-              AI
-            </span>
+            ProjetoG2 <span className="text-(--primary-color) text-sm italic">AI</span>
           </span>
         </div>
 
-        {/* MENU NAVEGAÇÃO - Padding px-2 engloba os botões para cálculo perfeito */}
+        {/* MENU NAVEGAÇÃO */}
         <nav className="flex-1 px-2 py-4 space-y-2 overflow-hidden mt-2">
           
           <button onClick={() => navigate("/visaogeral")} className={getNavClass("/visaogeral")}>
             <LayoutDashboard size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              Visão Geral
-            </span>
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Visão Geral</span>
           </button>
 
           <button onClick={() => navigate("/cadastros")} className={getNavClass("/cadastros")}>
             <Users size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              Cadastros
-            </span>
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Cadastros</span>
+          </button>
+                    {/* CadastroRevisaoDados */}
+          <button onClick={() => navigate("/CadastroRevisaoDados")} className={getNavClass("/CadastroRevisaoDados")}>
+            <CheckSquare size={24} className="min-w-[24px] flex-shrink-0" />
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Revisão Cadastro</span>
           </button>
 
-          <button onClick={() => navigate("/novaanalise")} className={getNavClass("/novaanalise")}>
+          <button onClick={() => navigate("/analisenova")} className={getNavClass("/analisenova")}>
             <PlusCircle size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              Nova Análise
-            </span>
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Nova Análise</span>
           </button>
 
-          <button onClick={() => navigate("/pendencias")} className={getNavClass("/pendencias")}>
-            {/* Ícone com notificação ajustado para não quebrar a flexbox */}
-            <div className="relative flex items-center justify-center min-w-[24px]">
-              <FileWarning size={24} />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-(--sidebar-bg) transition-colors"></span>
-            </div>
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-between flex-1">
-              Pendências
-              <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full ml-2">
-                3
-              </span>
-            </span>
+          {/* DOCUMENTOS UPLOAD */}
+          <button onClick={() => navigate("/documentosupload")} className={getNavClass("/documentosupload")}>
+            <FileUp size={24} className="min-w-[24px] flex-shrink-0" />
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Upload de Docs</span>
           </button>
 
           <button onClick={() => navigate("/relatorios")} className={getNavClass("/relatorios")}>
             <BarChart3 size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              Relatórios
-            </span>
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">Relatórios</span>
           </button>
 
-          <button onClick={() => navigate("/configuracoes")} className={getNavClass("/configuracoes")}>
-            <Settings size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              Configurações
-            </span>
-          </button>
         </nav>
 
-        {/* LOGOUT - Acompanhando a formatação exata do menu */}
+        {/* LOGOUT */}
         <div className="p-2 mb-4 border-t border-white/10 mt-auto">
           <button
             onClick={handleLogout}
             className="flex items-center w-full px-3 py-3 rounded-xl text-slate-400 hover:bg-red-500/10 hover:text-red-500 transition-colors group/logout whitespace-nowrap overflow-hidden"
           >
             <LogOut size={24} className="min-w-[24px] flex-shrink-0" />
-            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
-              Sair
-            </span>
+            <span className="ml-4 opacity-0 group-hover:opacity-100 transition-opacity font-medium">Sair</span>
           </button>
         </div>
       </aside>
 
-      {/* Área Principal - O ml-14 passou para ml-16 acompanhando o novo tamanho do sidebar */}
+      {/* Área Principal */}
       <main className="flex-1 flex flex-col overflow-hidden ml-16 w-full transition-all duration-300">
         
-        {/* Cabeçalho */}
+        {/* Cabeçalho Superior */}
         <header className="bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 shadow-sm h-12 px-8 flex justify-end items-center z-10 w-full relative transition-colors duration-300">
           <h1 className="text-slate-800 dark:text-white font-extrabold text-2xl tracking-tight absolute left-1/2 transform -translate-x-1/2 transition-colors duration-300">
             {getTituloPagina()}
           </h1>
 
           <div className="flex items-center space-x-6">
-            
-            {/* SELETOR DE TEMAS DINÂMICOS */}
+            {/* Seletor de Temas */}
             <div className="hidden sm:flex items-center space-x-2 mr-4 border-r border-gray-100 dark:border-slate-800 pr-6">
               <button onClick={() => setTheme({ ...theme, primaryColor: "#2563eb" })} className="w-5 h-5 rounded-full bg-blue-600 shadow-sm hover:scale-110 transition-transform" title="Azul"></button>
               <button onClick={() => setTheme({ ...theme, primaryColor: "#16a34a" })} className="w-5 h-5 rounded-full bg-green-600 shadow-sm hover:scale-110 transition-transform" title="Verde"></button>
@@ -171,29 +147,17 @@ const Layout = () => {
               <button onClick={() => setTheme({ ...theme, primaryColor: "#ea580c" })} className="w-5 h-5 rounded-full bg-orange-600 shadow-sm hover:scale-110 transition-transform" title="Laranja"></button>
             </div>
 
-            {/* Configuração de Dark Mode e Notificações */}
             <div className="relative flex items-center">
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 mr-4 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
-                title={theme.isDarkMode ? "Mudar para Modo Claro" : "Mudar para Modo Escuro"}
-              >
+              <button onClick={toggleDarkMode} className="p-2 mr-4 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
                 {theme.isDarkMode ? <Sun size={22} className="text-yellow-400" /> : <Moon size={22} />}
               </button>
               
-              <button
-                onClick={() => setShowNotifications(!showNotifications)}
-                className={`p-2 rounded-full relative transition-colors ${
-                  showNotifications 
-                    ? "bg-slate-100 dark:bg-slate-800 text-(--primary-color)" 
-                    : "text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800"
-                }`}
-              >
+              <button onClick={() => setShowNotifications(!showNotifications)} className={`p-2 rounded-full relative transition-colors ${showNotifications ? "bg-slate-100 dark:bg-slate-800 text-(--primary-color)" : "text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800"}`}>
                 <Bell size={22} />
                 <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
               </button>
 
-              {/* POPUP DE NOTIFICAÇÕES */}
+              {/* Popup de Notificações */}
               {showNotifications && (
                 <>
                   <div className="fixed inset-0 z-10" onClick={() => setShowNotifications(false)}></div>
@@ -204,12 +168,8 @@ const Layout = () => {
                     <div className="max-h-64 overflow-y-auto bg-white dark:bg-slate-900">
                       {notifications.map((n) => (
                         <div key={n.id} className="p-4 border-b border-gray-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-tight">
-                            {n.text}
-                          </p>
-                          <span className="text-[10px] text-gray-400 mt-1 block font-semibold">
-                            {n.time}
-                          </span>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-tight">{n.text}</p>
+                          <span className="text-[10px] text-gray-400 mt-1 block font-semibold">{n.time}</span>
                         </div>
                       ))}
                     </div>
@@ -218,23 +178,18 @@ const Layout = () => {
               )}
             </div>
 
-            {/* Nome e Avatar */}
+            {/* Avatar */}
             <div className="flex items-center space-x-3 border-l border-gray-100 dark:border-slate-800 pl-6">
               <div className="hidden md:block text-right">
-                <p className="text-sm font-bold text-gray-800 dark:text-white leading-tight transition-colors">
-                  Alessandro G2
-                </p>
+                <p className="text-sm font-bold text-gray-800 dark:text-white leading-tight">Alessandro G2</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Administrador</p>
               </div>
-              <div className="h-10 w-10 bg-(--sidebar-bg) rounded-xl flex items-center justify-center text-(--primary-color) font-bold shadow-md">
-                G2
-              </div>
+              <div className="h-10 w-10 bg-(--sidebar-bg) rounded-xl flex items-center justify-center text-(--primary-color) font-bold shadow-md">G2</div>
             </div>
-            
           </div>
         </header>
 
-        {/* Conteúdo Dinâmico das Telas */}
+        {/* Conteúdo Dinâmico */}
         <div className="flex-1 overflow-y-auto p-8 bg-transparent">
           <Outlet />
         </div>

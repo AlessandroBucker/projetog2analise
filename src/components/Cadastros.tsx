@@ -1,7 +1,13 @@
-import { Play, ShieldCheck, Clock, AlertCircle, PlusCircle } from "lucide-react";
+import { 
+  ShieldCheck, 
+  Clock, 
+  AlertCircle, 
+  PlusCircle, 
+  Edit 
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const Cadastros = () => { // Nome alterado para combinar com o arquivo
+const Cadastros = () => {
   const navigate = useNavigate();
 
   const clientes = [
@@ -27,7 +33,7 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto"> {/* Garante que a tabela não quebre em telas menores */}
+        <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-gray-100">
@@ -35,7 +41,7 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
                 <th className="p-4 font-bold text-gray-600 text-sm text-center">Tipo</th>
                 <th className="p-4 font-bold text-gray-600 text-sm">CPF / CNPJ</th>
                 <th className="p-4 font-bold text-gray-600 text-sm">Status da Análise</th>
-                <th className="p-4 font-bold text-gray-600 text-sm text-center">Ação</th>
+                <th className="p-4 font-bold text-gray-600 text-sm text-right">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -58,13 +64,14 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
                   <td className="p-4">
                     {renderStatus(cliente.status)}
                   </td>
-                  <td className="p-4 text-center">
+                  <td className="p-4 text-right">
+                    {/* BOTÃO EDITAR: Agora direciona para a Revisão de Dados */}
                     <button 
-                      onClick={() => navigate('/nova-analise')}
-                      className="flex items-center justify-center mx-auto space-x-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-blue-600 transition-all shadow-sm active:scale-95 group"
+                      onClick={() => navigate("/CadastroRevisaoDados", { state: { cliente } })}
+                      className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                      title="Revisar e Editar Dados"
                     >
-                      <Play size={14} className="fill-current" />
-                      <span>Iniciar Análise</span>
+                      <Edit size={18} />
                     </button>
                   </td>
                 </tr>
@@ -74,10 +81,9 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
         </div>
       </div>
 
-      {/* Botão de Cadastro alinhado à direita */}
       <div className="mt-6 flex justify-end">
         <button 
-          onClick={() => navigate("/novocliente")}
+          onClick={() => navigate("/CadastroRevisaoDados")}
           className="flex items-center space-x-2 bg-white border border-blue-600 text-blue-600 px-6 py-2 rounded-xl font-bold text-sm hover:bg-blue-600 hover:text-white transition-all shadow-sm"
         >
           <PlusCircle size={18} />
@@ -88,4 +94,4 @@ const Cadastros = () => { // Nome alterado para combinar com o arquivo
   );
 };
 
-export default Cadastros; // Export atualizado
+export default Cadastros;
