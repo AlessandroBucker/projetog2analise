@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ClipboardCheck, Database, FileSearch, Save } from "lucide-react";
 
+
 const AnaliseNova = () => {
   const [formData, setFormData] = useState({
     nome: "",

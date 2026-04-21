@@ -12,7 +12,6 @@ const Relatorios = () => {
   const [filtroTipo, setFiltroTipo] = useState("");
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
-
   const relatoriosExistentes = [
     { 
       id: 1, 

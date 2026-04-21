@@ -3,13 +3,11 @@ import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
-  Settings,
   LogOut,
   Bell,
   ShieldCheck,
   BarChart3,
   PlusCircle,
-  FileWarning,
   Sun,
   Moon,
   FileUp,      // Ícone para Upload
@@ -27,7 +25,6 @@ const Layout = () => {
     localStorage.removeItem("saas_token");
     navigate("/login");
   };
-
   // Sincronizado com os caminhos do menu para o título atualizar corretamente
   const getTituloPagina = () => {
     const path = location.pathname.toLowerCase();

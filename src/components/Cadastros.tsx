@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 const Cadastros = () => {
   const navigate = useNavigate();
-
   const clientes = [
     { id: 1, nome: "Atelier Da Verinha", tipo: "PJ", documento: "12.345.678/0001-99", status: "Concluído" },
     { id: 2, nome: "João Silva Auditoria", tipo: "PF", documento: "123.456.789-00", status: "Pendente" },

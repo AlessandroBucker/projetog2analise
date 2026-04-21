@@ -157,7 +157,6 @@ const Pendencias = () => {
               </button>
             </div>
           ))}
-
           {pendencias.length === 0 && (
             <div className="bg-white border-2 border-dashed border-slate-200 rounded-3xl p-16 text-center">
               <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">

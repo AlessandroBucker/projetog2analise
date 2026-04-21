@@ -108,7 +108,6 @@ const Home = () => {
       </footer>
         </div>
       </section>
-
     </div>
   );
 };

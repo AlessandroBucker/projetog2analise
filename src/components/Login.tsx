@@ -38,7 +38,6 @@ const Login = () => {
           </p>
         </div>
       </div>
-
       {/* LADO DIREITO: FORMULÁRIO */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 lg:p-12 bg-white relative">
               {/* LOGO */}

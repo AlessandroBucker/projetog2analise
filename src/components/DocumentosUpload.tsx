@@ -28,7 +28,6 @@ const ANALISES_CRIADAS = [
   { id: 1, nome: "Auditoria de Crédito Trimestral - Mar/2026", tipo: "PJ" },
   { id: 2, nome: "Análise de Risco Operacional - Logística", tipo: "PF" }
 ];
-
 const CADASTROS_EXISTENTES = [
   { id: 101, nome: "Alessandro G2 - PF", tipo: "PF" },
   { id: 102, nome: "G2 Governança LTDA - PJ", tipo: "PJ" },

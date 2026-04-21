@@ -25,7 +25,6 @@ const Leads = () => {
     alert("Solicitação enviada com sucesso! Nossa equipe entrará em contato.");
     navigate("/"); // Redireciona para home após o envio
   };
-
   return (
     <div className="h-screen w-full flex overflow-hidden bg-white font-sans">
       
@@ -58,7 +57,6 @@ const Leads = () => {
             <span>Já sou cliente</span>
           </button>
         </div>
-
         <div className="max-w-sm w-full">
           <header className="mb-6 mt-8">
             <h1 className="text-2xl font-bold text-slate-900">Solicitar Acesso</h1>

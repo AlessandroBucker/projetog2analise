@@ -17,6 +17,7 @@ const CadastroNovo = () => {
     razao: "", cnae: "", cnpj: "", email: ""
   });
 
+  
   const simulateCNPJLookup = () => {
     setLoadingAPI(true);
     setTimeout(() => {

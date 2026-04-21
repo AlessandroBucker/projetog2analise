@@ -22,7 +22,6 @@ const Configuracoes = lazy(() => import('../components/Configuracoes'));
 const CadastroNovo = lazy(() => import('../components/CadastroNovo'));
 const CadastroRevisaoDados = lazy(() => import('../components/CadastroRevisaoDados'));
 const DocumentosUpload = lazy(() => import('../components/DocumentosUpload'));
-
     
 // ---------------------------------------------------------
 // 2. COMPONENTE DE CARREGAMENTO (FALLBACK)
@@ -89,7 +88,6 @@ export const router = createBrowserRouter([
       }
     ]
   },
-
   // Rota de Fallback: Se digitar um endereço que não existe, volta para a Home
   { path: '*', element: <Navigate to="/" replace /> }
 ]);

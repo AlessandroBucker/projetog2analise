@@ -24,7 +24,6 @@ const Cadastros = () => {
         return <span className="flex items-center text-gray-500 bg-gray-100 px-3 py-1 rounded-full text-xs font-bold">Aguardando</span>;
     }
   };
-
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">

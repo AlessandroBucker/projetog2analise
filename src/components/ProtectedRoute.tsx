@@ -13,7 +13,6 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
   if (!token) {
     return <Navigate to="/login" replace />;
   }
-
   // 2. Se a rota exige perfis específicos E o perfil do usuário não está na lista
   if (allowedRoles && userRole && !allowedRoles.includes(userRole)) {
     // Redireciona para uma tela segura (ex: Visão Geral) e bloqueia o acesso
