@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { 
   AlertCircle, FileWarning, ArrowRight, 
   UploadCloud, Clock, Search, AlertTriangle,
-  ShieldCheck, FileSearch, ArrowLeft, X
+  ShieldCheck, FileSearch, ArrowLeft,
 } from "lucide-react";
 
 const Pendencias = () => {

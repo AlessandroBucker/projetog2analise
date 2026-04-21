@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { 
   Search, Plus, Filter, FileBarChart, 
-  CheckCircle2, Clock, AlertTriangle, 
-  MoreHorizontal, ArrowUpRight, Download,
+  CheckCircle2, Clock, AlertTriangle, ArrowUpRight, Download,
   Building2, Calendar
 } from "lucide-react";
 
 // --- TIPAGEM ---
 type StatusType = "Concluído" | "Em Revisão" | "Pendente" | "Crítico";
 
-interface Analise {
+interface Analises {
   id: string;
   titulo: string;
   empresa: string;
@@ -18,14 +17,14 @@ interface Analise {
   score: number;
 }
 
-const MOCK_ANALISES: Analise[] = [
+const MOCK_ANALISES: Analises[] = [
   { id: "1", titulo: "Auditoria de Crédito Trimestral", empresa: "G2 Governança LTDA", data: "12/04/2026", status: "Concluído", score: 95 },
   { id: "2", titulo: "Análise de Risco Operacional", empresa: "Logística Express", data: "18/04/2026", status: "Em Revisão", score: 72 },
   { id: "3", titulo: "Conformidade Tributária Anual", empresa: "Varejo Plus SA", data: "20/04/2026", status: "Crítico", score: 45 },
   { id: "4", titulo: "Validação de Folha de Pagamento", empresa: "Tech Inovação", data: "21/04/2026", status: "Pendente", score: 0 },
 ];
 
-const AnalisesPage = () => {
+const Analises = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (

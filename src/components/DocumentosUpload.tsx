@@ -2,8 +2,7 @@ import { useState, useRef, ChangeEvent, DragEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   ShieldCheck, User, Building2, Globe, 
-  UploadCloud, FileText, CheckCircle2, 
-  Info, ChevronRight, AlertCircle, FileCheck, X
+  UploadCloud, FileText, ChevronRight, AlertCircle, FileCheck,
 } from "lucide-react";
 
 // --- TIPAGEM E REQUISITOS ---
